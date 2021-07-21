@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="container main-content">
+    <div class="row justify-content-center m-5">
+        <div class="col-md-6">
+            <div class="h4 mt-5 mb-5">{{ title | title}}</div>
+            {% if products %}
+              {% for product in products %}
+            <div class="product">
+              <a href="{% url 'productview' url=product.url %}" class="product">
+                <div class="listing">
+                  <div class="row">
+                    <div class="col-md-4">
+                      {% for image in product.image.all|slice:":1"  %}
+                      <img src="{{ image.image.url }}" alt="">
+                      {% endfor %}
+                    </div>
+                    <div class="col-md-8">
+                      <div class="details">
+                        <div class="title">
+                          <p class="ti">
+                            {{ product.name| title | truncatewords:7 }}
+                          </p>
+                        </div>
+                        <div class="description">
+                          <div class="det">
+                            <p>{{ product.details| truncatewords:4 }}</p>
+                          </div>
+                          <div class="loc-cat">
+                            <p><i class="bi bi-geo-alt"></i> {{ product.location|title }}, {{ product.category|title }}</p>
+                          </div>
+                          <div class="time-price">
+                            <div class="row">
+                              <div class="col-md-8">
+                                <p class="price">TK {{ product.price }}</p>
+                              </div>
+
+                                <div class="col-md-4">
+                                  {% if product.uploaded_time|timesince|wordcount > 2 %}
+
+                                    {{ product.uploaded_time|timesince|truncatewords:2|slice:":-3" }}
+
+                                  {% else %}
+
+                                   {{ product.uploaded_time|timesince }}
+
+                                  {% endif %}
+                                  </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+                </div>
+              {% endfor %}
+              {% else %}
+              <p>There is no Products availble</p>
+              {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

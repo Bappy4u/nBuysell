@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block main %}
+
+    <section class="body container">
+      <div class="top">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="loc"><a href="{% url 'sorted_locview' location='dhaka' %}"><i class="bi bi-geo-alt-fill"></i> Dhaka</a></p>
+            </div>
+            <div class="col-md-6">
+              <form method="post" class="search form-inline">
+                {% csrf_token %}
+                <input name="query"
+                  type="text"
+                  class="form-control form-group"
+                  placeholder="Search Products"
+                />
+                <input
+                  class="form-group form-control text-white bg-success"
+                  type="submit"
+                  value="Search"
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="main-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+                <div class="h5"><p>All Categories</p></div>
+              <div class="cat">
+                {% for category in categories %}
+                <p><a href="{% url 'categoryview' category=category.name %}">{{ category.name | title }} ({{ category.number }})</a></p>
+                {% endfor %}
+              </div>
+              <hr>
+              <div class="h5"><p>Area</p></div>
+              <div class="cat">
+                {% for location in locations %}
+                <p><a href="{% url 'sorted_locview' location=location.name %}">{{ location.name | title }} ({{ location.number }})</a></p>
+                {% endfor %}
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <div class="page-bread">
+                <a href="#" class="page">Home/all-adds/Dhaka</a>
+              </div>
+              <div class="message">
+                <p class="msg">Buy and Sell Anything in Dhaka</p>
+                <p class="list-count">Showing 1-25 of 169,938 ads</p>
+              </div>
+              <hr />
+              {% if products %}
+              {% for product in products %}
+              <a href="{% url 'productview' url=product.url %}" class="product">
+                <div class="listing">
+                  <div class="row">
+                    <div class="col-md-4">
+                      {% for image in product.image.all|slice:":1"  %}
+                      <img src="{{ image.image.url }}" alt="">
+                      {% endfor %}
+
+                    </div>
+                    <div class="col-md-8">
+                      <div class="details">
+                        <div class="title">
+                          <p class="ti">
+                            {{ product.name| title | truncatewords:7 }}
+                          </p>
+                        </div>
+                        <div class="description">
+                          <div class="det">
+                            <p>{{ product.details| truncatewords:4 }}</p>
+                          </div>
+                          <div class="loc-cat">
+                            <p><i class="bi bi-geo-alt"></i> {{ product.location|title }}, {{ product.category|title }}</p>
+                          </div>
+                          <div class="time-price">
+                            <div class="row">
+                              <div class="col-md-8">
+                                <p class="price">TK {{ product.price }}</p>
+                              </div>
+
+                                <div class="col-md-4">
+                                  {% if product.uploaded_time|timesince|wordcount > 2 %}
+
+                                    {{ product.uploaded_time|timesince|truncatewords:2|slice:":-3" }}
+
+                                  {% else %}
+
+                                   {{ product.uploaded_time|timesince }}
+
+                                  {% endif %}
+                                  </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              {% endfor %}
+              {% else %}
+              <p>There is no Products availble</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}
+

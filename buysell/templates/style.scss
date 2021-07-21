@@ -1,0 +1,78 @@
+body {
+  .navbar {
+    background: #004f92;
+    .navbar-brand {
+      font-size: 30px;
+      color: #fff;
+      &:hover {
+        color: #ff9393;
+      }
+    }
+    a {
+      color: #fff;
+      &:hover {
+        color: #ff9393;
+      }
+    }
+  }
+  .body {
+    background: #f1efef;
+    margin: 40px auto;
+    .top {
+      padding: 20px 0;
+      .loc {
+        font-size: 20px;
+        line-height: 35px;
+        margin: 0;
+        i {
+          color: #004f92;
+        }
+      }
+      form {
+        float: right;
+      }
+    }
+    .main-content {
+      .product {
+        &:hover {
+          text-decoration: none;
+          .listing {
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+          }
+        }
+        .listing {
+          margin: 30px 0;
+          background: #fff;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+          transition: all 0.3s;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+          .details {
+            margin: 20px 0 0 0;
+            .title {
+              .ti {
+                font-size: 16px;
+                font-weight: 600;
+                margin: 0;
+              }
+            }
+            .det {
+              p {
+                font-size: 12px;
+                margin: 0;
+              }
+            }
+            .loc-cat {
+              p {
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

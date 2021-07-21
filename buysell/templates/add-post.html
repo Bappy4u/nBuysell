@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block main %}
+    {% load static %}
+{% if not user.is_authenticated %}
+    <meta http-equiv="REFRESH" content="0;url={% url 'loginview' %}?next={{request.path|urlencode}}">
+  {% endif %}
+    <section class="body post-main container">
+      <div class="container">
+        <form action="" method="post" class="form" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-5">
+            <label for="id_name">Name</label>
+              {{ form.name }}
+              </div>
+            <div class="col-md-2">
+            <label for="id_condition">Condition</label>
+              {{ form.condition }}
+              </div>
+            <div class="col-md-3">
+              <label for="id_category">Category</label>
+              {{ form.category }}
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+
+            <label for="id_price">Price</label>
+              {{ form.price }}
+            </div>
+            <div class="col-md-2">
+
+              <label for="id_post_category">Want to</label>
+                {{ form.post_category }}
+            </div>
+            <div class="col-md-2">
+              <label for="id_location">Location</label>
+                {{ form.location }}
+              </div>
+
+             <div class="col-md-3">
+              <label for="id_details">Phone</label>
+                {{ form.phone }}
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-4">
+              <label for="id_details">Details</label>
+                {{ form.details }}
+            </div>
+
+            <div class="col-md-3  sub-btn">
+              <input class="btn btn-success" type="submit" value="Submit">
+            </div>
+          </div>
+
+
+
+        </form>
+      </div>
+    </section>
+{% endblock %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+
