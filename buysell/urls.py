@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name='homeview'),
     path('login/', views.loginview, name='loginview'),
+    path('signup/', views.signup_view, name='signupview'),
     path('add-post/', views.addpostview, name='addpostview'),
     path('logout/', views.logoutview, name='logoutview'),
     path('all-ads/<location>/', views.sorted_locview, name='sorted_locview'),
@@ -17,7 +18,7 @@ urlpatterns = [
     path('delete/<pk>/', views.ProductDelete.as_view(), name='product_delete'),
     path('save/<id>/', views.productSaveview, name='product_saveview'),
     path('unlike/<id>/', views.unlineview, name='product_unlikeview'),
-    path('saved/<user>/', views.savedproductview, name='product_savedproductview'),
+    path('saved/<user>/', views.savedproductview,
+         name='product_savedproductview'),
     path('my-products/<user>/', views.myproductview, name='myproductview'),
 ]
-

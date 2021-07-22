@@ -11,6 +11,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 
 class ProductDelete(UserPassesTestMixin, DeleteView):
     model = Product
+
     def test_func(self):
         return self.request.user.username == str(self.get_object().author)
     success_url = '../../'
@@ -19,11 +20,13 @@ class ProductDelete(UserPassesTestMixin, DeleteView):
 
 class ProductUpdateView(UserPassesTestMixin, UpdateView):
     model = Product
+
     def test_func(self):
         return self.request.user.username == str(self.get_object().author)
     form_class = ProductForm
     template_name = 'product_update_form.html'
     success_url = '../../'
+
 
 def search(query):
     return redirect('searchview', query=query)
@@ -68,6 +71,21 @@ def home(request):
         })
 
 
+def signup_view(request):
+    redirect_to = request.GET.get('next', '')
+    if request.method == 'POST' and not request.user.is_authenticated:
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(redirect_to)
+        else:
+            return render(request, 'signup/index.html', {'redirect_to': redirect_to})
+    elif request.user.is_authenticated:
+        return redirect('homeview')
+    else:
+        return render(request, 'signup/index.html', {'redirect_to': redirect_to})
 
 
 def loginview(request):
@@ -95,7 +113,7 @@ def url_generetor(title):
         product_url = temp + '-' + str(urlfound)
         newcount = Product.objects.all().filter(url=product_url).count()
         if newcount:
-            urlfound +=1
+            urlfound += 1
         else:
             urlfound = 0
     return product_url
@@ -170,15 +188,24 @@ def categoryview(request, category):
 
 
 def productview(request, url):
-    #Lovedobject = LovedProduct.objects.get(user=request.user)
-
-    ##else:
-        #isLoved = False
-
+    isLoved = False
     product = Product.objects.get(url=url)
+    if request.user.is_authenticated:
+        user_loved = LovedProduct.objects.filter(user=request.user).first()
+        print("user found")
+
+        isLoved = False
+        if user_loved:
+            found_love = LovedProduct.objects.filter(
+                user=request.user, Product=product.id).first()
+
+        if found_love:
+            isLoved = True
+            print("found love")
+
     context = {
         'product': product,
-        #'isLoved': isLoved,
+        'isLoved': isLoved,
     }
     return render(request, 'product.html', context)
 
@@ -225,6 +252,7 @@ def productSaveview(request, id):
     object.Product.add(product)
     return redirect(redirect_to)
 
+
 def unlineview(request, id):
     redirect_to = request.GET.get('next', '')
     object = LovedProduct.objects.get(user=request.user.id)
@@ -256,12 +284,3 @@ def myproductview(request, user):
         return render(request, 'filter-products.html', context)
     else:
         raise PermissionDenied
-
-
-
-
-
-
-
-
-

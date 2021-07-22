@@ -1,121 +1,148 @@
-{% extends "base.html" %}
-{% block css %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
-{% endblock %}
-{% block main %}
-    {% load static %}
+{% extends "base.html" %} {% block css %}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css"
+/>
+{% endblock %} {% block main %} {% load static %}
 <section class="body container">
-    <div class="product-main">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="title">
-                        <h1>{{ product.name }}</h1>
-                    </div>
-                    <div class="loc-time">
-                        <p><i class="bi bi-geo-alt"></i> {{ product.location|title}} <i class="bi bi-dot"></i> {{product.uploaded_time}}</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    {% if request.user != product.author %}
-                    <div class="save-product-icon">
-                        {% if not user.is_authenticated %}
-                          <a class="btn btn-white" href="{% url 'loginview' %}?next={{request.path | urlencode }}">
-                              <i class="bi bi-suit-heart-fill"></i>
-                          </a>
-                        {% else %}
-                            {% if isLoved %}
-                             <a class="btn btn-white" href="{% url 'product_unlikeview' id=product.id %}?next={{request.path | urlencode }}">
-                                  <i class="bi bi-suit-heart-fill red-fill"></i>
-                             </a>
-                            {% else %}
-                                <a class="btn btn-white" href="{% url 'product_saveview' id=product.id %}?next={{request.path | urlencode }}">
-                                  <i class="bi bi-suit-heart-fill"></i>
-                                </a>
-                            {% endif %}
-                        {% endif %}
-
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="image">
-                        <div class="splide" id="primarySlider">
-                            <div class="splide__track">
-                                <ul class="splide__list">
-                                    {% for image in product.image.all %}
-
-                                        <li class="splide__slide">
-                                            <img src="{{ image.image.url }}" alt="">
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="splide2" id="secondary-slider">
-                            <div class="splide__track">
-                                <ul class="splide__list">
-                                     {% for image in product.image.all %}
-                                        <li class="splide__slide">
-                                            <img src="{{ image.image.url }}" alt="">
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                 <div class="col-md-4  contact-col">
-                     {% if product.author == request.user %}
-                        <div class="author">
-                            <p><a style="display: block;" class="btn btn-success" href="{% url 'product_update' pk=product.id %}">Edit Product</a></p>
-                        </div>
-                        <div class="author">
-                            <p><a style="display: block;" class="btn btn-danger" href="{% url 'product_delete' pk=product.id %}">Delete Product</a></p>
-                        </div>
-                      <div class="author">
-                            <p><a style="display: block;" class="btn btn-warning" href="{% url 'uploadview' id=product.id %}">Add Photos</a></p>
-                        </div>
-                     {% else %}
-                        <div class="author">
-                            <p>For sale by <a href="#">{{ product.author | title}}</a></p>
-                        </div>
-                        <div class="chat-icon">
-                           <h5>
-                               {% if not user.is_authenticated %}
-                                <a href="{% url 'loginview' %}?next={{request.path | urlencode }}"><i class="bi bi-chat"></i> Chat</a>
-                               {% else %}
-                               <a href="#"><i class="bi bi-chat"></i> Chat</a>
-                               {% endif %}
-
-
-                           </h5>
-                        </div>
-                        <div class="warning">
-                           <p><i class="bi bi-shield-check"></i> Stay safe in nBuysell</p>
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
+  <div class="product-main">
+    <div class="container">
+      <div class="row">
         <div class="col-md-8">
-            <div class="price">
-                <h3 class="price">TK {{ product.price }}</h3>
-            </div>
-            <div class="description">
-                <h5>Description</h5>
-                <p>{{ product.details }}</p>
-            </div>
+          <div class="title">
+            <h1>{{ product.name }}</h1>
+          </div>
+          <div class="loc-time">
+            <p>
+              <i class="bi bi-geo-alt"></i> {{ product.location|title}}
+              <i class="bi bi-dot"></i> {{product.uploaded_time}}
+            </p>
+          </div>
         </div>
+        <div class="col-md-4">
+          {% if request.user != product.author %}
+          <div class="save-product-icon">
+            {% if not user.is_authenticated %}
+            <a
+              class="btn btn-white"
+              href="{% url 'loginview' %}?next={{request.path | urlencode }}"
+            >
+              <i class="bi bi-suit-heart-fill"></i>
+            </a>
+            {% else %} {% if isLoved %}
+            <a
+              class="btn btn-white"
+              href="{% url 'product_unlikeview' id=product.id %}?next={{request.path | urlencode }}"
+            >
+              <i class="bi bi-suit-heart-fill red-fill"></i>
+            </a>
+            {% else %}
+            <a
+              class="btn btn-white"
+              href="{% url 'product_saveview' id=product.id %}?next={{request.path | urlencode }}"
+            >
+              <i class="bi bi-suit-heart-fill"></i>
+            </a>
+            {% endif %} {% endif %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="image">
+            <div class="splide" id="primarySlider">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  {% for image in product.image.all %}
+
+                  <li class="splide__slide">
+                    <img src="{{ image.image.url }}" alt="" />
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="splide2" id="secondary-slider">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  {% for image in product.image.all %}
+                  <li class="splide__slide">
+                    <img src="{{ image.image.url }}" alt="" />
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 contact-col">
+          {% if product.author == request.user %}
+          <div class="author">
+            <p>
+              <a
+                style="display: block"
+                class="btn btn-success"
+                href="{% url 'product_update' pk=product.id %}"
+                >Edit Product</a
+              >
+            </p>
+          </div>
+          <div class="author">
+            <p>
+              <a
+                style="display: block"
+                class="btn btn-danger"
+                href="{% url 'product_delete' pk=product.id %}"
+                >Delete Product</a
+              >
+            </p>
+          </div>
+          <div class="author">
+            <p>
+              <a
+                style="display: block"
+                class="btn btn-warning"
+                href="{% url 'uploadview' id=product.id %}"
+                >Add Photos</a
+              >
+            </p>
+          </div>
+          {% else %}
+          <div class="author">
+            <p>For sale by <a href="#">{{ product.author | title}}</a></p>
+          </div>
+          <div class="chat-icon">
+            <h5>
+              {% if not user.is_authenticated %}
+              <a href="{% url 'loginview' %}?next={{request.path | urlencode }}"
+                ><i class="bi bi-chat"></i> Chat</a
+              >
+              {% else %}
+              <a href="#"><i class="bi bi-chat"></i> Chat</a>
+              {% endif %}
+            </h5>
+          </div>
+          <div class="warning">
+            <p><i class="bi bi-shield-check"></i> Stay safe in nBuysell</p>
+          </div>
+        </div>
+        {% endif %}
+      </div>
     </div>
+    <div class="col-md-8">
+      <div class="price">
+        <h3 class="price">TK {{ product.price }}</h3>
+      </div>
+      <div class="description">
+        <h5>Description</h5>
+        <p>{{ product.details }}</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-{% endblock %}
-{% block js %}
+{% endblock %} {% block js %}
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 <script src="{% static 'js/function.js'%}"></script>
 {% endblock %}
-
