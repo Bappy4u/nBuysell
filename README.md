@@ -19,6 +19,10 @@ User: john
 #### * pythonanywhere.com for deployment
 
 
+### Uncomplete feature:
+
+#### * Live chat person to person
+
 
 <h2>UI for marketplace</h2>
 
