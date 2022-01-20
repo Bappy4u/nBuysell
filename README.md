@@ -3,10 +3,10 @@ A Marketplace for buy sell new and old products!
 
 
 # Live link: <a href="https://bappy4u.github.io/portfolio/">nBuySell</a>
-If you like to test as a user. Here is credential:
+If you'd like to check as a user. Here is credential:
 
 User: john
-password: password4john
+<br>password: password4john
 
 
 ### What I used in this project
@@ -14,6 +14,7 @@ password: password4john
 #### * Python 3.8
 #### * Django
 #### * Django-orm
+#### * JavaScript
 #### * SQLite
 #### * pythonanywhere.com for deployment
 
