@@ -9,7 +9,7 @@ User: john
 <br>password: password4john
 
 
-# What I used in this project
+# What I've used in this project
 
 #### * Python 3.8
 #### * Django
