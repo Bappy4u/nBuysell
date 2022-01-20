@@ -2,7 +2,7 @@
 A Marketplace for buy sell new and old products!
 
 
-# Live link: <a href="https://bappy4u.github.io/portfolio/">nBuySell</a>
+# Live link: <a href="https://nbuysell.pythonanywhere.com/">nBuySell</a>
 If you'd like to check as a user. Here is credential:
 
 User: john
