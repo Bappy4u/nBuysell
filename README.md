@@ -9,7 +9,7 @@ User: john
 <br>password: password4john
 
 
-### What I used in this project
+# What I used in this project
 
 #### * Python 3.8
 #### * Django
@@ -19,7 +19,7 @@ User: john
 #### * pythonanywhere.com for deployment
 
 
-### Uncomplete feature:
+# Uncomplete feature:
 
 #### * Live chat person to person
 
