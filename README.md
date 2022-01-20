@@ -19,7 +19,7 @@ User: john
 #### * pythonanywhere.com for deployment
 
 
-# Uncomplete feature:
+# Incomplete feature:
 
 #### * Live chat person to person
 
