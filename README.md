@@ -3,6 +3,25 @@ A Marketplace for buy sell new and old products!
 
 <h2>UI for marketplace</h2>
 
+# Live link: <a href="https://bappy4u.github.io/portfolio/">nBuySell</a>
+If you like to test as a user. Here is credential:
+
+User: john
+password: password4john
+
+
+### What I used in this project
+
+#### * Python 3.8
+#### * Django
+#### * Django-orm
+#### * SQLite
+#### * pythonanywhere.com for deployment
+
+
+
+
+
 ### Homepage
 ![home](https://user-images.githubusercontent.com/26277680/149951308-372580b6-5767-4f51-a1ce-7e941d51b251.png)
 
