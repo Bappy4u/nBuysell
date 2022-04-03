@@ -33,7 +33,7 @@ Once you select and run virtual environment that you just installed :
 * Finally 
 
 ```sh
-(storefront) $ python manage.py runserver
+(nBuySell) $ python manage.py runserver
 ```
 And navigate to http://127.0.0.1:8000/
 
