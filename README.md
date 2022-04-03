@@ -12,7 +12,7 @@ User: john
 #### The first thing to do is to clone the repository:
 
 ```sh
-$ git clone https://github.com/Bappy4u/storefront.git
+$ git clone https://github.com/Bappy4u/nBuysell.git
 $ cd nBuySell
 ```
 
