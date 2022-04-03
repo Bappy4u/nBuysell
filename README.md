@@ -8,6 +8,42 @@ If you'd like to check as a user. Here is credential:
 User: john
 <br>password: password4john
 
+## Setup
+#### The first thing to do is to clone the repository:
+
+```sh
+$ git clone https://github.com/Bappy4u/storefront.git
+$ cd nBuySell
+```
+
+#### Create a virtual environment to install dependencies in and activate it:
+if you have `pipenv`  installed in your machine
+```sh
+$ pipenv install
+```
+It will install a virtual environment for you and will install all the dependencies
+* Select that environment as your python interpreter
+
+Once you select and run virtual environment that you just installed :
+
+* To migrate all the settings command this in the terminal
+```sh
+(nBuySell) $ python manage.py migrate
+```
+* Finally 
+
+```sh
+(storefront) $ python manage.py runserver
+```
+And navigate to http://127.0.0.1:8000/
+
+
+* To check the admin pannel create a super user
+
+```sh
+(nBuySell) $ python manage.py createsuperuser
+```
+
 
 # What I've used in this project
 
@@ -24,7 +60,7 @@ User: john
 #### * Live chat person to person
 
 
-<h2>UI for marketplace</h2>
+<h2>Walkthrough</h2>
 
 ### Homepage
 ![home](https://user-images.githubusercontent.com/26277680/149951308-372580b6-5767-4f51-a1ce-7e941d51b251.png)
