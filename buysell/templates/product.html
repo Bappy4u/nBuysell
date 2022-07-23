@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block css %}
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css"
+  href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.20/dist/css/splide.min.css"
 />
 {% endblock %} {% block main %} {% load static %}
 <section class="body container">
@@ -143,6 +143,7 @@
 </section>
 
 {% endblock %} {% block js %}
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.20/dist/js/splide.min.js"></script>
 <script src="{% static 'js/function.js'%}"></script>
 {% endblock %}
